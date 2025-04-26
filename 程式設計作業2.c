@@ -28,6 +28,7 @@ int main() {
         switch (choice) {
             case 'a':
             case 'A':
+            	drawTriangle();
                 break;
             case 'b':
             case 'B':
@@ -96,3 +97,29 @@ void showMenu() {
     printf("請選擇一個選項：");
 }
 
+void drawTriangle() {
+    system("cls");
+    char ch;
+    while (1) {
+        printf("請輸入一個 'a' 到 'n' 的字母：");
+        scanf(" %c", &ch);
+        if (ch >= 'a' && ch <= 'n') break;
+        else printf("輸入錯誤，請重新輸入。\n");
+    }
+
+    int rows = ch - 'a' + 1; // 計算要幾行
+    for (int i = 1; i <= rows; i++) {
+        // 先印 (rows - i) 個空格
+        for (int j = 1; j <= rows - i; j++) {
+            printf(" ");
+        }
+        // 再印 i 個星星
+        for (int k = 1; k <= i; k++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    printf("按任意鍵回主選單...\n");
+    getch();
+}
