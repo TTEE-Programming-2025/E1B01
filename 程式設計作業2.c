@@ -32,6 +32,7 @@ int main() {
                 break;
             case 'b':
             case 'B':
+            	showMultiplicationTable();
                 break;
             case 'c':
             case 'C':
@@ -116,6 +117,27 @@ void drawTriangle() {
         // 再印 i 個星星
         for (int k = 1; k <= i; k++) {
             printf("*");
+        }
+        printf("\n");
+    }
+
+    printf("按任意鍵回主選單...\n");
+    getch();
+}
+
+void showMultiplicationTable() {
+    system("cls");
+    int n;
+    while (1) {
+        printf("請輸入 1~9 的整數：");
+        scanf("%d", &n);
+        if (n >= 1 && n <= 9) break;
+        else printf("輸入錯誤，請重新輸入。\n");
+    }
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            printf("%d*%d=%2d  ", i, j, i*j);
         }
         printf("\n");
     }
