@@ -92,3 +92,20 @@ void showLogin() {
 	printf("*              000000              *\n");
 	printf("************************************\n");
 }
+
+int verifyPassword() {
+    char input[10];
+    int attempts = 0;
+    while (attempts < MAX_ATTEMPTS) {
+        printf("Enter 4-digit password: ");
+        scanf("%s", input);
+        if (strcmp(input, PASSWORD) == 0) {
+            printf("Welcome! Access granted.\n");
+            return 1;
+        } else {
+            printf("Incorrect password.\n");
+            attempts++;
+        }
+    }
+    return 0;
+}
