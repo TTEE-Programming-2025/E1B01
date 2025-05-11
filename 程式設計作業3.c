@@ -109,3 +109,38 @@ int verifyPassword() {
     }
     return 0;
 }
+
+void showSeats() {
+    printf("\\123456789\n");
+    for (int i = SIZE - 1; i >= 0; i--) {
+        printf("%d", i + 1);
+        for (int j = 0; j < SIZE; j++) {
+            printf("%c", seats[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void randomBookedSeats() {
+    int count = 0;
+    while (count < 10) {
+        int r = rand() % SIZE;
+        int c = rand() % SIZE;
+        if (seats[r][c] == '-') {
+            seats[r][c] = '*';
+            count++;
+        }
+    }
+}
+
+void clearScreen() {
+    system("cls");
+}
+
+void waitForKey() {
+    printf("Press any key to return to menu...\n");
+    getchar();
+    getchar();
+}
+
+
