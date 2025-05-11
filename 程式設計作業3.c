@@ -143,4 +143,56 @@ void waitForKey() {
     getchar();
 }
 
+void computerArrange() {
+    int need;
+    printf("How many seats do you need (1-4)? ");
+    scanf("%d", &need);
+
+    int placed = 0;
+    for (int i = 0; i < SIZE && !placed; i++) {
+        for (int j = 0; j <= SIZE - need; j++) {
+            int ok = 1;
+            for (int k = 0; k < need; k++) {
+                if (seats[i][j + k] != '-') {
+                    ok = 0;
+                    break;
+                }
+            }
+            if (ok) {
+                for (int k = 0; k < need; k++)
+                    seats[i][j + k] = '@';
+                placed = 1;
+                break;
+            }
+        }
+    }
+
+    if (!placed && need == 4) {
+        for (int i = 0; i < SIZE - 1 && !placed; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (seats[i][j] == '-' && seats[i + 1][j] == '-') {
+                    seats[i][j] = seats[i + 1][j] = '@';
+                    seats[i][(j + 1) % SIZE] = seats[i + 1][(j + 1) % SIZE] = '@';
+                    placed = 1;
+                    break;
+                }
+            }
+        }
+    }
+
+    showSeats();
+    printf("Are you satisfied? (y/n): ");
+    char response;
+    scanf(" %c", &response);
+    if (response == 'y') {
+        for (int i = 0; i < SIZE; i++)
+            for (int j = 0; j < SIZE; j++)
+                if (seats[i][j] == '@') seats[i][j] = '*';
+    } else {
+        for (int i = 0; i < SIZE; i++)
+            for (int j = 0; j < SIZE; j++)
+                if (seats[i][j] == '@') seats[i][j] = '-';
+    }
+}
+
 
