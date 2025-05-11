@@ -24,6 +24,8 @@ void userChoose();
 void exitProgram();
 void waitForKey();
 
+int i, j;  // 全局宣告變數 i 和 j
+
 int main() {
     srand(time(NULL));
     showLogin();
@@ -62,9 +64,11 @@ int main() {
 }
 
 void initializeSeats() {
-    for (int i = 0; i < SIZE; i++)
-        for (int j = 0; j < SIZE; j++)
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
             seats[i][j] = '-';
+        }
+    }
 }
 
 void showLogin() {
@@ -76,21 +80,21 @@ void showLogin() {
     printf("************************************\n");
     printf("*         Merry Christmas!         *\n");
     printf("*                                  *\n");
-	printf("*                0                 *\n");
-	printf("*               000                *\n");
-	printf("*              00000               *\n");
-	printf("*             0000000              *\n");
-	printf("*            000000000             *\n");
-	printf("*           00000000000            *\n");
-	printf("*          0000000000000           *\n");
-	printf("*         000000000000000          *\n");
-	printf("*        00000000000000000         *\n");
-	printf("*       0000000000000000000        *\n");
-	printf("*      000000000000000000000       *\n");
-	printf("*              000000              *\n");
-	printf("*              000000              *\n");
-	printf("*              000000              *\n");
-	printf("************************************\n");
+    printf("*                0                 *\n");
+    printf("*               000                *\n");
+    printf("*              00000               *\n");
+    printf("*             0000000              *\n");
+    printf("*            000000000             *\n");
+    printf("*           00000000000            *\n");
+    printf("*          0000000000000           *\n");
+    printf("*         000000000000000          *\n");
+    printf("*        00000000000000000         *\n");
+    printf("*       0000000000000000000        *\n");
+    printf("*      000000000000000000000       *\n");
+    printf("*              000000              *\n");
+    printf("*              000000              *\n");
+    printf("*              000000              *\n");
+    printf("************************************\n");
 }
 
 int verifyPassword() {
@@ -110,11 +114,21 @@ int verifyPassword() {
     return 0;
 }
 
+void showMenu() {
+    clearScreen();
+    printf("----------[Booking System]----------\n");
+    printf("| a. Available seats               |\n");
+    printf("| b. Arrange for you               |\n");
+    printf("| c. Choose by yourself            |\n");
+    printf("| d. Exit                          |\n");
+    printf("------------------------------------\n");
+}
+
 void showSeats() {
     printf("\\123456789\n");
-    for (int i = SIZE - 1; i >= 0; i--) {
+    for (i = SIZE - 1; i >= 0; i--) {
         printf("%d", i + 1);
-        for (int j = 0; j < SIZE; j++) {
+        for (j = 0; j < SIZE; j++) {
             printf("%c", seats[i][j]);
         }
         printf("\n");
@@ -149,17 +163,18 @@ void computerArrange() {
     scanf("%d", &need);
 
     int placed = 0;
-    for (int i = 0; i < SIZE && !placed; i++) {
-        for (int j = 0; j <= SIZE - need; j++) {
+    for (i = 0; i < SIZE && !placed; i++) {
+        for (j = 0; j <= SIZE - need; j++) {
             int ok = 1;
-            for (int k = 0; k < need; k++) {
+            int k;
+            for (k = 0; k < need; k++) {
                 if (seats[i][j + k] != '-') {
                     ok = 0;
                     break;
                 }
             }
             if (ok) {
-                for (int k = 0; k < need; k++)
+                for (k = 0; k < need; k++)
                     seats[i][j + k] = '@';
                 placed = 1;
                 break;
@@ -168,8 +183,8 @@ void computerArrange() {
     }
 
     if (!placed && need == 4) {
-        for (int i = 0; i < SIZE - 1 && !placed; i++) {
-            for (int j = 0; j < SIZE; j++) {
+        for (i = 0; i < SIZE - 1 && !placed; i++) {
+            for (j = 0; j < SIZE; j++) {
                 if (seats[i][j] == '-' && seats[i + 1][j] == '-') {
                     seats[i][j] = seats[i + 1][j] = '@';
                     seats[i][(j + 1) % SIZE] = seats[i + 1][(j + 1) % SIZE] = '@';
@@ -185,12 +200,12 @@ void computerArrange() {
     char response;
     scanf(" %c", &response);
     if (response == 'y') {
-        for (int i = 0; i < SIZE; i++)
-            for (int j = 0; j < SIZE; j++)
+        for (i = 0; i < SIZE; i++)
+            for (j = 0; j < SIZE; j++)
                 if (seats[i][j] == '@') seats[i][j] = '*';
     } else {
-        for (int i = 0; i < SIZE; i++)
-            for (int j = 0; j < SIZE; j++)
+        for (i = 0; i < SIZE; i++)
+            for (j = 0; j < SIZE; j++)
                 if (seats[i][j] == '@') seats[i][j] = '-';
     }
 }
@@ -199,7 +214,7 @@ void userChoose() {
     int num;
     printf("How many seats do you want to choose? ");
     scanf("%d", &num);
-    for (int i = 0; i < num; i++) {
+    for (i = 0; i < num; i++) {
         int row, col;
         char dash;
         while (1) {
@@ -215,8 +230,8 @@ void userChoose() {
     }
     showSeats();
     waitForKey();
-    for (int i = 0; i < SIZE; i++)
-        for (int j = 0; j < SIZE; j++)
+    for (i = 0; i < SIZE; i++)
+        for (j = 0; j < SIZE; j++)
             if (seats[i][j] == '@') seats[i][j] = '*';
 }
 
