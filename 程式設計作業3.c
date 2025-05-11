@@ -220,4 +220,17 @@ void userChoose() {
             if (seats[i][j] == '@') seats[i][j] = '*';
 }
 
-
+void exitProgram() {
+    char ch;
+    while (1) {
+        printf("Continue? (y/n): ");
+        scanf(" %c", &ch);
+        if (ch == 'y') return;
+        else if (ch == 'n') {
+            printf("Thank you for using the booking system.\n");
+            exit(0);
+        } else {
+            printf("Invalid input. Try again.\n");
+        }
+    }
+}
