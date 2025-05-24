@@ -139,3 +139,17 @@ void enterGrades() {
     printf("\n所有學生資料輸入完成。\n");
     pause();
 }
+
+void displayGrades() {
+    clearScreen();
+    printf("%-10s %-10s %-6s %-6s %-6s %-6s\n", "姓名", "學號", "數學", "物理", "英文", "平均");
+    for (int i = 0; i < student_count; i++) {
+        printf("%-10s %-10d %-6d %-6d %-6d %-6.1f\n",
+               students[i].name, students[i].id,
+               students[i].math, students[i].physics,
+               students[i].english, students[i].average);
+    }
+    pause();
+}
+
+
