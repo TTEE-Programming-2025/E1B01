@@ -63,3 +63,39 @@ int login() {
     }
     return 0;
 }
+
+void showMenu() {
+    printf("------------[Grade System]----------\n");
+    printf("| a. Enter student grades           |\n");
+    printf("| b. Display student grades         |\n");
+    printf("| c. Search for student grades      |\n");
+    printf("| d. Grade ranking                  |\n");
+    printf("| e. Exit system                    |\n");
+    printf("------------------------------------\n");
+}
+
+int main() {
+    char choice;
+    printWelcomeArt();
+    if (!login()) {
+        printf("已連續錯誤三次，系統將結束。\n");
+        return 0;
+    }
+    do {
+        clearScreen();
+        showMenu();
+        printf("請輸入選項: ");
+        scanf(" %c", &choice);
+        switch (choice) {
+            case 'a': enterGrades(); break;
+            case 'b': displayGrades(); break;
+            case 'c': searchGrades(); break;
+            case 'd': rankGrades(); break;
+            case 'e': if (exitSystem()) return 0; break;
+            default: printf("無效的選項，請重新輸入！\n"); pause();
+        }
+    } while (1);
+
+    return 0;
+}
+
