@@ -15,6 +15,7 @@ typedef struct {
 
 Student students[MAX_STUDENTS];
 int student_count = 0;
+int i,j;
 
 void clearScreen() {
     system("cls");
@@ -108,7 +109,7 @@ void enterGrades() {
         pause();
         return;
     }
-    for (int i = 0; i < student_count; i++) {
+    for (i = 0; i < student_count; i++) {
         printf("\n第 %d 位學生\n", i + 1);
         printf("姓名: ");
         scanf("%s", students[i].name);
@@ -143,7 +144,7 @@ void enterGrades() {
 void displayGrades() {
     clearScreen();
     printf("%-10s %-10s %-6s %-6s %-6s %-6s\n", "姓名", "學號", "數學", "物理", "英文", "平均");
-    for (int i = 0; i < student_count; i++) {
+    for (i = 0; i < student_count; i++) {
         printf("%-10s %-10d %-6d %-6d %-6d %-6.1f\n",
                students[i].name, students[i].id,
                students[i].math, students[i].physics,
@@ -158,7 +159,7 @@ void searchGrades() {
     clearScreen();
     printf("請輸入要查詢的學生姓名: ");
     scanf("%s", searchName);
-    for (int i = 0; i < student_count; i++) {
+    for (i = 0; i < student_count; i++) {
         if (strcmp(searchName, students[i].name) == 0) {
             printf("\n找到學生資料：\n");
             printf("姓名: %s\n", students[i].name);
@@ -179,8 +180,8 @@ void searchGrades() {
 void rankGrades() {
     Student temp;
     clearScreen();
-    for (int i = 0; i < student_count - 1; i++) {
-        for (int j = i + 1; j < student_count; j++) {
+    for (i = 0; i < student_count - 1; i++) {
+        for (j = i + 1; j < student_count; j++) {
             if (students[i].average < students[j].average) {
                 temp = students[i];
                 students[i] = students[j];
@@ -189,7 +190,7 @@ void rankGrades() {
         }
     }
     printf("%-10s %-10s %-6s\n", "姓名", "學號", "平均");
-    for (int i = 0; i < student_count; i++) {
+    for (i = 0; i < student_count; i++) {
         printf("%-10s %-10d %-6.1f\n",
                students[i].name, students[i].id, students[i].average);
     }
