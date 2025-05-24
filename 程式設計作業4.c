@@ -176,3 +176,22 @@ void searchGrades() {
     pause();
 }
 
+void rankGrades() {
+    Student temp;
+    clearScreen();
+    for (int i = 0; i < student_count - 1; i++) {
+        for (int j = i + 1; j < student_count; j++) {
+            if (students[i].average < students[j].average) {
+                temp = students[i];
+                students[i] = students[j];
+                students[j] = temp;
+            }
+        }
+    }
+    printf("%-10s %-10s %-6s\n", "姓名", "學號", "平均");
+    for (int i = 0; i < student_count; i++) {
+        printf("%-10s %-10d %-6.1f\n",
+               students[i].name, students[i].id, students[i].average);
+    }
+    pause();
+}
