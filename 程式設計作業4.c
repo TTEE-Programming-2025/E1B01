@@ -16,17 +16,17 @@ typedef struct {
 Student students[MAX_STUDENTS];
 int student_count = 0;
 int i,j;
-
+//清除螢幕 
 void clearScreen() {
     system("cls");
 }
-
+//等待的提示字句 
 void pause() {
     printf("\n請按任意鍵繼續...");
     getchar();
     getchar();
 }
-
+//我的個人畫風面 
 void printWelcomeArt() {
     clearScreen();
     printf("########################################\n");
@@ -48,7 +48,7 @@ void printWelcomeArt() {
     printf("########################################\n");
     printf("\n歡迎使用簡易成績系統，請輸入密碼 (4 位數):\n");
 }
-
+//密碼輸入與判斷是否正確 
 int login() {
     int password, attempts = 0;
     while (attempts < 3) {
@@ -64,7 +64,7 @@ int login() {
     }
     return 0;
 }
-
+//主選單 
 void showMenu() {
     printf("------------[Grade System]----------\n");
     printf("| a. Enter student grades           |\n");
@@ -74,7 +74,7 @@ void showMenu() {
     printf("| e. Exit system                    |\n");
     printf("------------------------------------\n");
 }
-
+//密碼和讓使用者選選項 
 int main() {
     char choice;
     printWelcomeArt();
@@ -99,7 +99,7 @@ int main() {
 
     return 0;
 }
-
+//選項a 
 void enterGrades() {
     clearScreen();
     printf("請輸入學生人數 (5~10): ");
@@ -140,7 +140,7 @@ void enterGrades() {
     printf("\n所有學生資料輸入完成。\n");
     pause();
 }
-
+//選項b 
 void displayGrades() {
     clearScreen();
     printf("%-10s %-10s %-6s %-6s %-6s %-6s\n", "姓名", "學號", "數學", "物理", "英文", "平均");
@@ -152,7 +152,7 @@ void displayGrades() {
     }
     pause();
 }
-
+//選項c 
 void searchGrades() {
     char searchName[50];
     int found = 0;
@@ -176,7 +176,7 @@ void searchGrades() {
     }
     pause();
 }
-
+//選項d 
 void rankGrades() {
     Student temp;
     clearScreen();
@@ -196,7 +196,7 @@ void rankGrades() {
     }
     pause();
 }
-
+//選項e 
 int exitSystem() {
     char choice;
     while (1) {
@@ -207,4 +207,10 @@ int exitSystem() {
     }
 }
 
+/*
+說明與心得：
+本程式實作一個簡易成績系統，包含學生資料輸入、顯示、搜尋、排名功能，並使用結構與指標操作。
+我加入了以字母 C 為背景的新個人風格畫面，並整合清除與暫停畫面，也學會如何應用結構陣列。
+過程中練習了條件判斷、字串處理與排序邏輯等，大大增強了 C 語言的實作能力。
+*/
 
