@@ -99,3 +99,43 @@ int main() {
     return 0;
 }
 
+void enterGrades() {
+    clearScreen();
+    printf("請輸入學生人數 (5~10): ");
+    scanf("%d", &student_count);
+    if (student_count < 5 || student_count > 10) {
+        printf("人數錯誤，請輸入 5 到 10 之間。\n");
+        pause();
+        return;
+    }
+    for (int i = 0; i < student_count; i++) {
+        printf("\n第 %d 位學生\n", i + 1);
+        printf("姓名: ");
+        scanf("%s", students[i].name);
+        printf("學號 (6 位數): ");
+        scanf("%d", &students[i].id);
+        if (students[i].id < 100000 || students[i].id > 999999) {
+            printf("學號格式錯誤！\n");
+            i--;
+            continue;
+        }
+        printf("數學成績: ");
+        scanf("%d", &students[i].math);
+        printf("物理成績: ");
+        scanf("%d", &students[i].physics);
+        printf("英文成績: ");
+        scanf("%d", &students[i].english);
+
+        if (students[i].math < 0 || students[i].math > 100 ||
+            students[i].physics < 0 || students[i].physics > 100 ||
+            students[i].english < 0 || students[i].english > 100) {
+            printf("成績輸入錯誤，請重新輸入該生資料。\n");
+            i--;
+            continue;
+        }
+
+        students[i].average = (students[i].math + students[i].physics + students[i].english) / 3.0;
+    }
+    printf("\n所有學生資料輸入完成。\n");
+    pause();
+}
