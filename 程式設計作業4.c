@@ -195,3 +195,15 @@ void rankGrades() {
     }
     pause();
 }
+
+int exitSystem() {
+    char choice;
+    while (1) {
+        printf("½T©wÂ÷¶}¡H(y/n): ");
+        scanf(" %c", &choice);
+        if (choice == 'y') return 1;
+        else if (choice == 'n') return 0;
+    }
+}
+
+
