@@ -152,4 +152,27 @@ void displayGrades() {
     pause();
 }
 
+void searchGrades() {
+    char searchName[50];
+    int found = 0;
+    clearScreen();
+    printf("請輸入要查詢的學生姓名: ");
+    scanf("%s", searchName);
+    for (int i = 0; i < student_count; i++) {
+        if (strcmp(searchName, students[i].name) == 0) {
+            printf("\n找到學生資料：\n");
+            printf("姓名: %s\n", students[i].name);
+            printf("學號: %d\n", students[i].id);
+            printf("數學: %d\n物理: %d\n英文: %d\n平均: %.1f\n",
+                   students[i].math, students[i].physics,
+                   students[i].english, students[i].average);
+            found = 1;
+            break;
+        }
+    }
+    if (!found) {
+        printf("查無此學生資料。\n");
+    }
+    pause();
+}
 
